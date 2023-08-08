@@ -1,7 +1,7 @@
 let edad = prompt("ingrese su edad");
 
 if (edad >= 18) {
-    alert ("sos mayor de edad, quedate y hace tu calculo tranquilo") } else{  alert("sos menor de edad, para poder calcular hacelo con un adulto") }  
+    alert ("sos mayor de edad, quedate y hace tu combinacion tranquilo") } else{  alert("sos menor de edad, para poder combinar hacelo con un adulto") }  
 
     const pantalones = ["Jean", "Chino", "Carga"];
     const remeras = ["Manga corta", "Manga larga", "Sin mangas"];
