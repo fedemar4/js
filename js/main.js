@@ -24,3 +24,6 @@ if (edad >= 18) {
     
 
     console.log(`¡Elegiste la combinación: ${pantalonElegido} + ${remeraElegida} + ${camperaElegida}!`);
+
+
+    
