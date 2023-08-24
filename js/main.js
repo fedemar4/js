@@ -1,29 +1,33 @@
-let edad = prompt("ingrese su edad");
+
+
+const edad = prompt("Ingrese su edad");
 
 if (edad >= 18) {
-    alert ("sos mayor de edad, quedate y hace tu combinacion tranquilo") } else{  alert("sos menor de edad, para poder combinar hacelo con un adulto") }  
+  alert("Eres mayor de edad, puedes crear tu combinación tranquilamente.");
+} else {
+  alert("Eres menor de edad. Necesitas la ayuda de un adulto para crear tu combinación.");
+}
 
-    const pantalones = ["Jean", "Chino", "Carga"];
-    const remeras = ["Manga corta", "Manga larga", "Sin mangas"];
-    const camperas = ["Cuero", "Denim", "Bomber"];
-    
+const opciones = {
+  pantalones: ["Jean", "Chino", "Carga"],
+  remeras: ["Manga corta", "Manga larga", "Sin mangas"],
+  camperas: ["Cuero", "Denim", "Bomber"],
+};
 
-    function obtenerSeleccion(opciones, categoria) {
-      console.log(`Elige una opción de ${categoria}:`);
-      for (let i = 0; i < opciones.length; i++) {
-        console.log(`${i + 1}. ${opciones[i]}`);
-      }
-      const eleccion = prompt(`Ingresa el número de la opción de ${categoria}:`);
-      return opciones[parseInt(eleccion) - 1];
-    }
-    
-  
-    const pantalonElegido = obtenerSeleccion(pantalones, "pantalones");
-    const remeraElegida = obtenerSeleccion(remeras, "remeras");
-    const camperaElegida = obtenerSeleccion(camperas, "camperas");
-    
+function obtenerSeleccion(opciones, categoria) {
+  console.log(`Elige una opción de ${categoria}:`);
+  opciones[categoria].forEach((opcion, index) => {
+    console.log(`${index + 1}. ${opcion}`);
+  });
+  const eleccion = prompt(`Ingresa el número de la opción de ${categoria}:`);
+  return opciones[categoria][parseInt(eleccion) - 1];
+}
 
-    console.log(`¡Elegiste la combinación: ${pantalonElegido} + ${remeraElegida} + ${camperaElegida}!`);
+const pantalonElegido = obtenerSeleccion(opciones, "pantalones");
+const remeraElegida = obtenerSeleccion(opciones, "remeras");
+const camperaElegida = obtenerSeleccion(opciones, "camperas");
+
+console.log(`¡Elegiste la combinación: ${pantalonElegido} + ${remeraElegida} + ${camperaElegida}!`);
 
 
     
