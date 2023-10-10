@@ -1,26 +1,28 @@
-
 const opciones = {
-  pantalones: ["Jean", "Chino", "Carga", "Shorts"],
+  pantalones: ["Jean", "Chino", "Cargo", "Shorts"],
   remeras: ["Manga corta", "Manga larga", "Sin mangas", "Polo"],
   camperas: ["Cuero", "Denim", "Bomber", "Impermeable"],
   zapatos: ["Zapatillas", "Botas", "Mocasines", "Sandalias"],
   sombreros: ["Gorra", "Sombrero de ala ancha", "Beanie"],
   accesorios: ["Collar", "Pulsera", "Bufanda"],
-  gafas: ["Gafas de sol", "Gafas de lectura", "Gafas de protección"],
-  workshop: ["Camiseta de workshop", "Sudadera de workshop", "Pantalones de workshop"]
+  gafas: ["Gafas de Sol", "Gafas de Lectura", "Gafas de Protección"],
+  workshop: ["Camiseta de Workshop", "Sudadera de Workshop", "Pantalones de Workshop"],
 };
 
 function obtenerSeleccion(opciones, categoria) {
   if (opciones[categoria]) {
-    const container = document.getElementById("opciones-container");
-    const categoriaDiv = document.createElement("div");
-    categoriaDiv.innerHTML = `<h3>Elige una opción de ${categoria}:</h3>`;
-    container.appendChild(categoriaDiv);
-
-    opciones[categoria].forEach((opcion, index) => {
-      const opcionDiv = document.createElement("div");
-      opcionDiv.innerHTML = `<label>${index + 1}. <input type="radio" name="${categoria}" value="${opcion}">${opcion}</label>`;
-      categoriaDiv.appendChild(opcionDiv);
+    const selectElement = document.getElementById(`${categoria}-select`);
+    const imagenElement = document.getElementById(`${categoria}-image`);
+    
+    selectElement.addEventListener("change", () => {
+      const selectedOption = selectElement.options[selectElement.selectedIndex];
+      const selectedValue = selectedOption.value;
+      const selectedText = selectedOption.text;
+      
+      if (selectedValue) {
+        imagenElement.src = `./imagenes/${selectedValue}.jpg`;
+        imagenElement.alt = `Imagen de ${selectedText}`;
+      }
     });
   }
 }
@@ -32,26 +34,25 @@ for (const categoria in opciones) {
 document.getElementById("combinar-button").addEventListener("click", () => {
   const seleccion = {};
   for (const categoria in opciones) {
-    const inputElements = document.getElementsByName(categoria);
-    const selectedInput = Array.from(inputElements).find((input) => input.checked);
+    const selectElement = document.getElementById(`${categoria}-select`);
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const selectedValue = selectedOption.value;
 
-    if (selectedInput) {
-      seleccion[categoria] = selectedInput.value;
+    if (selectedValue) {
+      seleccion[categoria] = selectedOption.text;
     } else {
       console.log(`Por favor, selecciona una opción de ${categoria}.`);
-      return; 
+      return;
     }
   }
 
   const combinacionMensaje = `¡Elegiste la combinación: ${seleccion.pantalones} + ${seleccion.remeras} + ${seleccion.camperas} + ${seleccion.zapatos} + ${seleccion.sombreros} + ${seleccion.accesorios} + ${seleccion.gafas} + ${seleccion.workshop}!`;
   console.log(combinacionMensaje);
 
-
   const combinacionesGuardadas = JSON.parse(localStorage.getItem("combinaciones")) || [];
   combinacionesGuardadas.push(seleccion);
   localStorage.setItem("combinaciones", JSON.stringify(combinacionesGuardadas));
 
- 
   mostrarCombinacionesGuardadas();
 });
 
