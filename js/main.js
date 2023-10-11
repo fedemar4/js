@@ -13,14 +13,14 @@ function obtenerSeleccion(opciones, categoria) {
   if (opciones[categoria]) {
     const selectElement = document.getElementById(`${categoria}-select`);
     const imagenElement = document.getElementById(`${categoria}-image`);
-    
+
     selectElement.addEventListener("change", () => {
       const selectedOption = selectElement.options[selectElement.selectedIndex];
       const selectedValue = selectedOption.value;
       const selectedText = selectedOption.text;
-      
+
       if (selectedValue) {
-        imagenElement.src = `./imagenes/${selectedValue}.jpg`;
+        imagenElement.src = `../imagenes/${selectedValue}.jpg`;
         imagenElement.alt = `Imagen de ${selectedText}`;
       }
     });
